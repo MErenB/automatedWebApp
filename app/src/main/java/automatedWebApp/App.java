@@ -19,6 +19,12 @@ public class App {
             throw new IllegalArgumentException();
             
         }
+        if (number == null) {
+            throw new IllegalArgumentException();
+        }
+        if (message == null) {
+            throw new IllegalArgumentException();
+        }
 
         double doubleValue = number.doubleValue();
         double sum = 0;
@@ -26,6 +32,9 @@ public class App {
             if(integer > lowerBound ) {
                 sum += integer*doubleValue;
             }            
+        }
+        if (sum == 0) {
+            return "All values are lower than the bound.";
         }
         return message + sum;
     }
