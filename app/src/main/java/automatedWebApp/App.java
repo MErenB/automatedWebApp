@@ -22,7 +22,7 @@ public class App {
                 sum += integer*doubleValue;
             }            
         }
-        return message ": "+ sum;
+        return message + sum;
     }
 
 }
