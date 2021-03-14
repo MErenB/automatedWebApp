@@ -4,6 +4,17 @@
 package automatedWebApp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import java.util.Scanner;
+
+import spark.ModelAndView;
+import spark.template.mustache.MustacheTemplateEngine;
+
+import static spark.Spark.get;
+
+import static spark.Spark.post;
 
 public class App {
     public String getGreeting() {
@@ -11,7 +22,42 @@ public class App {
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        get("/", (req,res) -> "Hello world.");
+
+        get("/compute", 
+            (req,res) -> {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("result", "not computed yet!");
+                return new ModelAndView(map, "compute.mustache");
+
+            },
+            new MustacheTemplateEngine());
+
+
+        post("/compute",
+            (req,res) ->{
+                String arrListInput = req.queryParams("ArrayList");
+                Scanner sc1 = new Scanner(arrListInput);
+
+                ArrayList<Integer> arrList = new ArrayList<>();
+                while(sc1.hasNext()) {
+                    arrList.add(Integer.parseInt(sc1.next().replaceAll("\\s","")));
+                }
+                sc1.close();
+
+                int numInput = Integer.parseInt(req.queryParams("Number").replaceAll("\\s", ""));
+                int lowerBoundInput = Integer.parseInt(req.queryParams("Lower Bound").replaceAll("\\s", ""));
+                String messageInput = req.queryParams("Message").replaceAll("\\s", "");
+
+                String result = multiplyAllNumbersUpperThanBound(arrList, numInput, lowerBoundInput, messageInput);
+
+                Map<String,String> map = new HashMap<>();
+                map.put("result", result);
+                return new ModelAndView(map, "compute.mustache");
+        },
+        new MustacheTemplateEngine());
+        
     }
 
     public static String multiplyAllNumbersUpperThanBound(ArrayList<Integer> arrList, Number number, int lowerBound, String message ) throws IllegalArgumentException {
