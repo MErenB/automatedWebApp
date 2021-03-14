@@ -14,7 +14,7 @@ public class App {
         System.out.println(new App().getGreeting());
     }
 
-    public static String computeResults(ArrayList<Integer> arrList, Number number, int lowerBound, String message ) throws IllegalArgumentException {
+    public static String multiplyAllNumbersUpperThanBound(ArrayList<Integer> arrList, Number number, int lowerBound, String message ) throws IllegalArgumentException {
         if (arrList == null) {
             throw new IllegalArgumentException();
             

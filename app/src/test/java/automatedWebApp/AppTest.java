@@ -24,8 +24,8 @@ class AppTest {
         
         
 
-        assertEquals("Result is:"+Double.valueOf(13500), App.computeResults(arrList,Long.valueOf(1500),4,"Result is:"));
-        assertEquals("Result is:"+Double.valueOf(65), App.computeResults(arrList,Byte.valueOf((byte) 5),3,"Result is:"));
+        assertEquals("Result is:"+Double.valueOf(13500), App.multiplyAllNumbersUpperThanBound(arrList,Long.valueOf(1500),4,"Result is:"));
+        assertEquals("Result is:"+Double.valueOf(65), App.multiplyAllNumbersUpperThanBound(arrList,Byte.valueOf((byte) 5),3,"Result is:"));
 
     }
 
@@ -34,7 +34,7 @@ class AppTest {
 
 
         assertThrows( IllegalArgumentException.class, 
-        () -> {App.computeResults(arrList, Double.valueOf(1890.2), 5, "This should not appear"); });
+        () -> {App.multiplyAllNumbersUpperThanBound(arrList, Double.valueOf(1890.2), 5, "This should not appear"); });
         
         
         
@@ -45,7 +45,7 @@ class AppTest {
         arrList.add(5);
         arrList.add(10);
 
-        assertThrows(IllegalArgumentException.class , () -> {App.computeResults(arrList, null, 5, "This should not appear"); });
+        assertThrows(IllegalArgumentException.class , () -> {App.multiplyAllNumbersUpperThanBound(arrList, null, 5, "This should not appear"); });
     }
 
     @Test void nullMessage() {
@@ -53,7 +53,7 @@ class AppTest {
         arrList.add(1000);
         arrList.add(2000);
 
-        assertThrows(IllegalArgumentException.class , () -> {App.computeResults(arrList, Long.valueOf(5), 5, null); });
+        assertThrows(IllegalArgumentException.class , () -> {App.multiplyAllNumbersUpperThanBound(arrList, Long.valueOf(5), 5, null); });
 
         
         
@@ -65,7 +65,7 @@ class AppTest {
         arrList.add(1);
         arrList.add(3);
 
-        assertEquals("All values are lower than the bound.", App.computeResults(arrList, Long.valueOf(20), 500, "Signal results:"));
+        assertEquals("All values are lower than the bound.", App.multiplyAllNumbersUpperThanBound(arrList, Long.valueOf(20), 500, "Signal results:"));
     }
 
     
