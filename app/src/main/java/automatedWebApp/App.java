@@ -14,7 +14,12 @@ public class App {
         System.out.println(new App().getGreeting());
     }
 
-    public static String computeResults(ArrayList<Integer> arrList, Number number, int lowerBound, String message ){
+    public static String computeResults(ArrayList<Integer> arrList, Number number, int lowerBound, String message ) throws IllegalArgumentException {
+        if (arrList == null) {
+            throw new IllegalArgumentException();
+            
+        }
+
         double doubleValue = number.doubleValue();
         double sum = 0;
         for (Integer integer : arrList) {

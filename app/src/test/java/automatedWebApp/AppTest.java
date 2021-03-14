@@ -21,7 +21,7 @@ class AppTest {
         arrList.add(4);
         arrList.add(9);
 
-        Number number = Long.valueOf(1500);
+        
         
 
         assertEquals("Result is:"+Double.valueOf(13500), App.computeResults(arrList,Long.valueOf(1500),4,"Result is:"));
@@ -29,7 +29,45 @@ class AppTest {
 
     }
 
+    @Test void nullArrayList() {
+        ArrayList<Integer> arrList = null;
 
 
+        assertThrows( IllegalArgumentException.class, 
+        () -> {App.computeResults(arrList, Double.valueOf(1890.2), 5, "This should not appear"); });
+        
+        
+        
+    }
+
+    @Test void nullNumber() {
+        ArrayList<Integer> arrList = new ArrayList<>();
+        arrList.add(5);
+        arrList.add(10);
+
+        assertThrows(IllegalArgumentException.class , () -> {App.computeResults(arrList, null, 5, "This should not appear"); });
+    }
+
+    @Test void nullMessage() {
+        ArrayList<Integer> arrList = new ArrayList<>();
+        arrList.add(1000);
+        arrList.add(2000);
+
+        assertThrows(IllegalArgumentException.class , () -> {App.computeResults(arrList, Long.valueOf(5), 5, null); });
+
+        
+        
+    }
+
+    @Test void allLessThanLowerBound() {
+        ArrayList<Integer> arrList = new ArrayList<>();
+        arrList.add(2);
+        arrList.add(1);
+        arrList.add(3);
+
+        assertEquals("All values are lower than the bound.", App.computeResults(arrList, Long.valueOf(20), 500, "Signal results:"));
+    }
+
+    
 
 }
