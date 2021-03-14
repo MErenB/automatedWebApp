@@ -9,6 +9,10 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+
+    // https://imperceptiblethoughts.com/shadow/getting-started/#default-java-groovy-tasks
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+
 }
 
 repositories {
@@ -42,7 +46,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'automatedWebApp.App'
+    mainClassName = 'automatedWebApp.App'
 }
 
 tasks.named('test') {
